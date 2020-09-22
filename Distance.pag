@@ -1,0 +1,78 @@
+VERSION 5.00
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Begin VB.PropertyPage Distance 
+   Caption         =   "Distance"
+   ClientHeight    =   1050
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   4365
+   LockControls    =   -1  'True
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   1050
+   ScaleWidth      =   4365
+   Begin VB.Frame Frame1 
+      Caption         =   "Distance"
+      Height          =   930
+      Left            =   45
+      TabIndex        =   0
+      Top             =   45
+      Width           =   4230
+      Begin VB.TextBox txtDistance 
+         Height          =   285
+         Left            =   3300
+         TabIndex        =   2
+         Top             =   330
+         Width           =   630
+      End
+      Begin MSComctlLib.Slider Slider1 
+         Height          =   420
+         Left            =   60
+         TabIndex        =   1
+         Top             =   300
+         Width           =   3180
+         _ExtentX        =   5609
+         _ExtentY        =   741
+         _Version        =   393216
+         Max             =   100
+         TickStyle       =   3
+      End
+      Begin VB.Label lblDistance 
+         AutoSize        =   -1  'True
+         Caption         =   "px"
+         Height          =   195
+         Left            =   3990
+         TabIndex        =   3
+         Top             =   345
+         Width           =   165
+      End
+   End
+End
+Attribute VB_Name = "Distance"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+
+Private Sub Slider1_Change()
+txtDistance.Text = Slider1.Value
+End Sub
+
+Private Sub Slider1_Scroll()
+txtDistance.Text = Slider1.Value
+
+End Sub
+
+Private Sub txtDistance_Change()
+    Slider1.Value = txtDistance.Text
+    Changed = True
+End Sub
+
+
+Private Sub PropertyPage_ApplyChanges()
+    SelectedControls(0).Distance = txtDistance.Text
+End Sub
+Private Sub PropertyPage_SelectionChanged()
+    txtDistance.Text = SelectedControls(0).Distance
+End Sub
+
+
